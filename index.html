@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen Estratégico — Marca de Mascotas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Epilogue:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0E0D0B;
+  --bg2: #161512;
+  --bg3: #1E1C18;
+  --surface: #252320;
+  --surface2: #2E2B26;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #F0EBE0;
+  --text2: rgba(240,235,224,0.6);
+  --text3: rgba(240,235,224,0.35);
+  --green: #5A9E6F;
+  --green-d: #3A7A4F;
+  --green-bg: rgba(90,158,111,0.1);
+  --green-border: rgba(90,158,111,0.25);
+  --amber: #D4924A;
+  --amber-d: #B07030;
+  --amber-bg: rgba(212,146,74,0.1);
+  --amber-border: rgba(212,146,74,0.25);
+  --blue: #5A8AC4;
+  --blue-bg: rgba(90,138,196,0.1);
+  --blue-border: rgba(90,138,196,0.25);
+  --red: #C45A5A;
+  --red-bg: rgba(196,90,90,0.1);
+  --red-border: rgba(196,90,90,0.25);
+  --gold: #C8A96E;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: rgba(14,13,11,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: .02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-text {
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 22vw;
+  font-weight: 700;
+  color: rgba(255,255,255,0.018);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -4px;
+}
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--green);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 2rem;
+  max-width: 900px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 600px;
+  margin-bottom: 3rem;
+  line-height: 1.75;
+}
+
+.hero-metrics {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-end;
+}
+
+.hm {
+  border-top: 1px solid var(--border2);
+  padding-top: 1rem;
+}
+
+.hm-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.hm-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--text3);
+  animation: scrollAnim 2s ease-in-out infinite;
+}
+
+@keyframes scrollAnim {
+  0%, 100% { transform: scaleX(1); opacity: .3; }
+  50% { transform: scaleX(1.5); opacity: .7; }
+}
+
+/* PAGE */
+.page-section {
+  padding: 6rem 5rem;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.page-section::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.025);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.sec-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sec-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--text3);
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 3rem;
+  letter-spacing: -.5px;
+}
+
+h2 em { font-style: italic; color: var(--gold); }
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: .75rem;
+}
+
+/* GRIDS */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: border-color .2s, background .2s;
+}
+
+.card:hover {
+  border-color: var(--border2);
+  background: var(--surface2);
+}
+
+.card-green {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card-amber {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card-blue {
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card-red {
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card-gold {
+  background: rgba(200,169,110,0.08);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.clabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .75rem;
+}
+
+.clabel.g { color: var(--green); }
+.clabel.a { color: var(--amber); }
+.clabel.b { color: var(--blue); }
+.clabel.r { color: var(--red); }
+.clabel.gold { color: var(--gold); }
+.clabel.muted { color: var(--text3); }
+
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* STAT CARDS */
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* BARS */
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.bar-label {
+  font-size: 12px;
+  color: var(--text2);
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+.bar-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* EMOTION PILLS */
+.tone-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.tone-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+}
+
+/* BRAND CARDS */
+.brand-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  transition: all .25s;
+}
+
+.brand-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.brand-rank {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  color: var(--text3);
+}
+
+.brand-origin {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: .75rem;
+}
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: .5rem;
+}
+
+.brand-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.brand-learn {
+  font-size: 11px;
+  color: var(--text3);
+  border-top: 1px solid var(--border);
+  padding-top: .75rem;
+  line-height: 1.6;
+}
+
+.brand-learn span {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 3px 3px 0 0;
+}
+
+.tag-g { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.tag-a { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.tag-b { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.tag-r { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.tag-gold { background: rgba(200,169,110,0.1); color: var(--gold); border: 1px solid rgba(200,169,110,0.2); }
+.tag-muted { background: rgba(255,255,255,0.04); color: var(--text3); border: 1px solid var(--border); }
+
+/* LAYER CARDS */
+.layer-card {
+  border-left: 3px solid;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1rem;
+}
+
+.layer-card.l1 { border-color: var(--text3); background: rgba(255,255,255,0.02); }
+.layer-card.l2 { border-color: var(--amber); background: var(--amber-bg); }
+.layer-card.l3 { border-color: var(--green); background: var(--green-bg); }
+.layer-card.l4 { border-color: var(--gold); background: rgba(200,169,110,0.08); }
+
+.layer-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.layer-title { font-size: 15px; font-weight: 600; margin-bottom: .3rem; }
+.layer-body { font-size: 12px; color: var(--text2); line-height: 1.65; margin-bottom: .6rem; }
+
+/* OPPORTUNITY BOX */
+.opp-box {
+  background: linear-gradient(135deg, rgba(90,158,111,0.12), rgba(200,169,110,0.08));
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.opp-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: .75rem;
+  color: var(--gold);
+}
+
+.opp-body {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* CHECKLIST */
+.check-item {
+  display: flex;
+  gap: 12px;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.check-item:last-child { border-bottom: none; }
+
+.check-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.check-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.check-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* QUOTE */
+.big-quote {
+  border-left: 2px solid var(--gold);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.big-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+
+.big-quote cite {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-style: normal;
+}
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* COMPETITIVE TABLE */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.comp-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-weight: 400;
+}
+
+.comp-table td {
+  padding: .85rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: top;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+.comp-table td:first-child { color: var(--text); font-weight: 500; }
+
+/* SYNTHESIS GRID */
+.synth-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.synth-item:last-child { border-bottom: none; }
+
+.synth-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  padding-top: 3px;
+}
+
+.synth-body { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.synth-body strong { color: var(--text); font-weight: 500; }
+
+/* ANIMATE */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* PROGRESS BARS ANIMATE */
+.bar-fill { width: 0 !important; }
+.bar-fill.animated { width: var(--w) !important; }
+
+/* FOOTER */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 3rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: .5rem;
+}
+
+.footer-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  color: var(--text3);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,footer,.hero,.page-section{padding-left:1.5rem;padding-right:1.5rem}
+  .hero{padding-top:6rem;padding-bottom:3rem;min-height:auto}
+  .hero h1{font-size:2.5rem}
+  .hero-metrics{flex-direction:column;gap:1.5rem}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .hero-bg-text{display:none}
+  .page-section::before{display:none}
+  nav .nav-links{display:none}
+  .synth-item{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Resumen Estratégico — Pet Brand</div>
+  <ul class="nav-links">
+    <li><a href="#encuesta">Encuesta</a></li>
+    <li><a href="#tonos">Tonos</a></li>
+    <li><a href="#competencia">Competencia</a></li>
+    <li><a href="#capas">Capas</a></li>
+    <li><a href="#referencias">Referencias</a></li>
+    <li><a href="#sintesis">Síntesis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">PET</div>
+
+  <div class="hero-tag">Market Research · CDMX · 2025</div>
+
+  <h1>Todo lo que<br>necesitas saber<br><em>antes de producir</em></h1>
+
+  <p class="hero-desc">Encuesta a 200 dueños de mascotas en La Condesa. Análisis competitivo de México y EUA. Mapa de capas de mercado. Las 5 referencias de marca que definen tu posicionamiento.</p>
+
+  <div class="hero-metrics">
+    <div class="hm">
+      <div class="hm-num">200</div>
+      <div class="hm-label">Encuestados — La Condesa</div>
+    </div>
+    <div class="hm">
+      <div class="hm-num">5</div>
+      <div class="hm-label">Preguntas + tono emocional</div>
+    </div>
+    <div class="hm">
+      <div class="hm-num">1,000</div>
+      <div class="hm-label">Registros emocionales</div>
+    </div>
+    <div class="hm">
+      <div class="hm-num">20+</div>
+      <div class="hm-label">Marcas analizadas</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll para ver el análisis completo
+  </div>
+</section>
+
+<!-- SECTION 1: ENCUESTA -->
+<section class="page-section reveal" id="encuesta" data-num="01">
+  <div class="sec-eyebrow">Resultados de encuesta</div>
+  <h2>Lo que el dueño de<br>mascota en Condesa<br><em>realmente quiere</em></h2>
+
+  <div class="g4" style="margin-bottom:3rem">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--green)">65.7%</div>
+      <div class="stat-label">Tonos positivos y de interés activo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--amber)">27.5%</div>
+      <div class="stat-label">Demanda de treats/snacks naturales (Q5)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--blue)">23</div>
+      <div class="stat-label">Menciones espontáneas sobre olor en productos</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--gold)">17%</div>
+      <div class="stat-label">Lee etiquetas activamente como filtro</div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:2rem">
+    <div>
+      <div class="clabel muted" style="margin-bottom:1.25rem">Q1 — Factores de decisión de compra</div>
+      <div class="bar-row"><div class="bar-label">Reputación de marca</div><div class="bar-track"><div class="bar-fill" style="--w:100%;background:var(--green)"></div></div><div class="bar-val">34</div></div>
+      <div class="bar-row"><div class="bar-label">Ingredientes naturales/limpios</div><div class="bar-track"><div class="bar-fill" style="--w:91%;background:var(--green)"></div></div><div class="bar-val">31</div></div>
+      <div class="bar-row"><div class="bar-label">Sin alergias / sin daño</div><div class="bar-track"><div class="bar-fill" style="--w:44%;background:var(--amber)"></div></div><div class="bar-val">15</div></div>
+      <div class="bar-row"><div class="bar-label">Palatabilidad (que le guste)</div><div class="bar-track"><div class="bar-fill" style="--w:32%;background:var(--amber)"></div></div><div class="bar-val">11</div></div>
+      <div class="bar-row"><div class="bar-label">Calidad nutricional</div><div class="bar-track"><div class="bar-fill" style="--w:32%;background:var(--blue)"></div></div><div class="bar-val">11</div></div>
+      <div class="bar-row"><div class="bar-label">Recomendación veterinaria</div><div class="bar-track"><div class="bar-fill" style="--w:29%;background:var(--text3)"></div></div><div class="bar-val">10</div></div>
+      <div class="bar-row"><div class="bar-label">Precio / accesibilidad</div><div class="bar-track"><div class="bar-fill" style="--w:12%;background:var(--text3)"></div></div><div class="bar-val">4</div></div>
+    </div>
+    <div>
+      <div class="clabel muted" style="margin-bottom:1.25rem">Q2 — Ingredientes exigidos (sí o sí)</div>
+      <div class="bar-row"><div class="bar-label">Proteína real</div><div class="bar-track"><div class="bar-fill" style="--w:100%;background:var(--gold)"></div></div><div class="bar-val">46</div></div>
+      <div class="bar-row"><div class="bar-label">Natural / sin químicos</div><div class="bar-track"><div class="bar-fill" style="--w:78%;background:var(--green)"></div></div><div class="bar-val">36</div></div>
+      <div class="bar-row"><div class="bar-label">Sin olor fuerte</div><div class="bar-track"><div class="bar-fill" style="--w:50%;background:var(--amber)"></div></div><div class="bar-val">23</div></div>
+      <div class="bar-row"><div class="bar-label">Sin colorantes / conservadores</div><div class="bar-track"><div class="bar-fill" style="--w:41%;background:var(--amber)"></div></div><div class="bar-val">19</div></div>
+      <div class="bar-row"><div class="bar-label">Vitaminas y minerales</div><div class="bar-track"><div class="bar-fill" style="--w:15%;background:var(--blue)"></div></div><div class="bar-val">7</div></div>
+      <div class="bar-row"><div class="bar-label">Omega 3/6</div><div class="bar-track"><div class="bar-fill" style="--w:15%;background:var(--blue)"></div></div><div class="bar-val">7</div></div>
+      <div class="bar-row"><div class="bar-label">Ingredientes simples</div><div class="bar-track"><div class="bar-fill" style="--w:15%;background:var(--text3)"></div></div><div class="bar-val">7</div></div>
+    </div>
+  </div>
+
+  <div class="g3" style="margin-bottom:2rem">
+    <div class="card-green">
+      <div class="clabel g">Q5 — Necesidad más urgente</div>
+      <h3 style="color:var(--green);margin-bottom:.5rem">Snacks naturales</h3>
+      <div class="card-body">55 personas (27.5%) mencionaron treats o snacks naturales como su necesidad más inmediata. Es la categoría con mayor demanda declarada de toda la encuesta.</div>
+    </div>
+    <div class="card-amber">
+      <div class="clabel a">Q5 — Segunda necesidad</div>
+      <h3 style="color:var(--amber);margin-bottom:.5rem">Alimento principal</h3>
+      <div class="card-body">47 personas (23.5%) señalaron necesitar cambiar o mejorar el alimento principal. Mercado enorme pero más regulado y competido.</div>
+    </div>
+    <div class="card-blue">
+      <div class="clabel b">Q5 — Tercera necesidad</div>
+      <h3 style="color:var(--blue);margin-bottom:.5rem">Shampoo / Higiene</h3>
+      <div class="card-body">36 personas (18%) necesitan un shampoo sin olor artificial. El pain point del olor es el más subestimado del mercado. Segunda oportunidad de producto.</div>
+    </div>
+  </div>
+
+  <div class="big-quote">
+    <p>"El consumidor pide natural, artesanal, ingredientes limpios — pero compra Hills y Pro Plan porque no existe una alternativa de calidad creíble a precio razonable con identidad de marca."</p>
+    <cite>Brecha de mercado identificada — La Condesa, 200 respuestas</cite>
+  </div>
+
+  <!-- BRANDS Q4 -->
+  <div class="clabel muted" style="margin-bottom:1.25rem;margin-top:2rem">Q3 + Q4 — Marcas que consumen actualmente (menciones combinadas)</div>
+  <div class="g2">
+    <div>
+      <div class="bar-row"><div class="bar-label">Hills</div><div class="bar-track"><div class="bar-fill" style="--w:100%;background:var(--red)"></div></div><div class="bar-val">48</div></div>
+      <div class="bar-row"><div class="bar-label">Nupec</div><div class="bar-track"><div class="bar-fill" style="--w:85%;background:var(--amber)"></div></div><div class="bar-val">41</div></div>
+      <div class="bar-row"><div class="bar-label">Pro Plan / Purina</div><div class="bar-track"><div class="bar-fill" style="--w:79%;background:var(--amber)"></div></div><div class="bar-val">38</div></div>
+      <div class="bar-row"><div class="bar-label">Royal Canin</div><div class="bar-track"><div class="bar-fill" style="--w:69%;background:var(--blue)"></div></div><div class="bar-val">33</div></div>
+    </div>
+    <div>
+      <div class="bar-row"><div class="bar-label">Kirkland</div><div class="bar-track"><div class="bar-fill" style="--w:48%;background:var(--text3)"></div></div><div class="bar-val">23</div></div>
+      <div class="bar-row"><div class="bar-label">Orijen</div><div class="bar-track"><div class="bar-fill" style="--w:31%;background:var(--green)"></div></div><div class="bar-val">15</div></div>
+      <div class="bar-row"><div class="bar-label">Farmina</div><div class="bar-track"><div class="bar-fill" style="--w:23%;background:var(--green)"></div></div><div class="bar-val">11</div></div>
+      <div class="bar-row"><div class="bar-label">Dog Chow</div><div class="bar-track"><div class="bar-fill" style="--w:25%;background:var(--text3)"></div></div><div class="bar-val">12</div></div>
+    </div>
+  </div>
+
+  <div class="card-amber" style="margin-top:1.5rem">
+    <div class="clabel a">Señal crítica — lealtad con tibieza</div>
+    <div class="card-body">El 27% de quienes mencionaron su marca actual lo hicieron con tono de <strong style="color:var(--text)">"interés moderado"</strong>, no de entusiasmo. Están satisfechos, no enamorados. Esa es la combinación más penetrable para una marca nueva.</div>
+  </div>
+</section>
+
+<!-- SECTION 2: TONOS EMOCIONALES -->
+<section class="page-section reveal" id="tonos" data-num="02">
+  <div class="sec-eyebrow">Análisis emocional</div>
+  <h2>El tono que tu marca<br><em>debe hablar</em></h2>
+
+  <div class="g2" style="margin-bottom:2.5rem">
+    <div>
+      <div class="clabel muted" style="margin-bottom:1.25rem">Distribución general — 1,000 registros emocionales</div>
+      <div class="bar-row"><div class="bar-label">Alegría</div><div class="bar-track"><div class="bar-fill" style="--w:100%;background:var(--green)"></div></div><div class="bar-val">26.2%</div></div>
+      <div class="bar-row"><div class="bar-label">Interés moderado</div><div class="bar-track"><div class="bar-fill" style="--w:92%;background:var(--green)"></div></div><div class="bar-val">24.0%</div></div>
+      <div class="bar-row"><div class="bar-label">Interés intenso</div><div class="bar-track"><div class="bar-fill" style="--w:59%;background:var(--amber)"></div></div><div class="bar-val">15.5%</div></div>
+      <div class="bar-row"><div class="bar-label">Conforme</div><div class="bar-track"><div class="bar-fill" style="--w:26%;background:var(--text3)"></div></div><div class="bar-val">6.9%</div></div>
+      <div class="bar-row"><div class="bar-label">Desinterés</div><div class="bar-track"><div class="bar-fill" style="--w:18%;background:var(--text3)"></div></div><div class="bar-val">4.7%</div></div>
+      <div class="bar-row"><div class="bar-label">Entusiasmo</div><div class="bar-track"><div class="bar-fill" style="--w:17%;background:var(--blue)"></div></div><div class="bar-val">4.5%</div></div>
+      <div class="bar-row"><div class="bar-label">Antagonismo / hostilidad</div><div class="bar-track"><div class="bar-fill" style="--w:15%;background:var(--red)"></div></div><div class="bar-val">4.0%</div></div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="clabel muted">Tono por pregunta — señales clave</div>
+        <table class="comp-table" style="margin-top:.5rem">
+          <thead><tr><th>Pregunta</th><th>Tono dominante</th><th>Señal</th></tr></thead>
+          <tbody>
+            <tr><td>Q1 Factor decisión</td><td style="color:var(--green)">Alegría 31%</td><td style="color:var(--text3);font-size:11px">Alta carga emocional al elegir</td></tr>
+            <tr><td>Q2 Ingredientes</td><td style="color:var(--blue)">Int. moderado 24%</td><td style="color:var(--text3);font-size:11px">Interés racional sostenido</td></tr>
+            <tr><td>Q3 Calidad-precio</td><td style="color:var(--amber)">Conforme 10%</td><td style="color:var(--text3);font-size:11px">Tensión entre querer y pagar</td></tr>
+            <tr><td>Q4 Marca actual</td><td style="color:var(--amber)">Int. moderado 27%</td><td style="color:var(--text3);font-size:11px">Lealtad sin amor — vulnerable</td></tr>
+            <tr><td>Q5 Necesidad urgente</td><td style="color:var(--green)">Int. moderado 27%</td><td style="color:var(--text3);font-size:11px">Necesidad real latente</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card-green">
+      <div class="clabel g">Tono primario para tu marca</div>
+      <h3 style="color:var(--green)">Alegría funcional + autoridad tranquila</h3>
+      <div class="card-body">No hables de amor de manera ñoña. Habla de decisiones inteligentes que hacen feliz a tu mascota. El consumidor quiere sentirse listo, no emocional. La alegría de tu comunicación viene de la confianza, no del sentimentalismo.</div>
+    </div>
+    <div class="card-gold">
+      <div class="clabel gold">Tono de confianza</div>
+      <h3 style="color:var(--gold)">Transparencia radical</h3>
+      <div class="card-body">"Natural" sola ya no vende — lo dice todo el mundo. "Pollo real + sin colorantes + origen Jalisco" sí. Etiqueta limpia, ingredientes que se entienden, sin claims vacíos. La transparencia es tu diferenciador estructural.</div>
+    </div>
+    <div class="card-red">
+      <div class="clabel r">Tono a evitar</div>
+      <h3 style="color:var(--red)">Dramatismo y ñoñería excesiva</h3>
+      <div class="card-body">El 4% de antagonismo y hostilidad indica fatiga con marcas que prometen de más. Evita el registro de clínica veterinaria fría y el de marca de moda sin sustancia. Un ingrediente real dice más que un párrafo de marketing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: COMPETENCIA -->
+<section class="page-section reveal" id="competencia" data-num="03">
+  <div class="sec-eyebrow">Mapa competitivo</div>
+  <h2>Top marcas <em>México</em><br>y Estados Unidos</h2>
+
+  <div class="clabel muted" style="margin-bottom:1.5rem">México — Top 10 treats deshidratados</div>
+  <div class="g3" style="margin-bottom:2.5rem">
+
+    <div class="brand-card">
+      <div class="brand-rank">#1 MX</div>
+      <div class="brand-origin" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)">Nacional · CDMX</div>
+      <div class="brand-name">MUTT Pet</div>
+      <div class="brand-desc">La referencia local más desarrollada. Comunidad real, presencia en Petco, producto mínimamente procesado. Tu competidor directo más serio.</div>
+      <div class="brand-learn"><span>Gap:</span> Identidad visual débil, sin ingrediente héroe, nombre en inglés sin narrativa en español.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#2 MX</div>
+      <div class="brand-origin" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)">Nacional · Amazon</div>
+      <div class="brand-name">Lovie</div>
+      <div class="brand-desc">Alta rotación en marketplace. Mix de hígado, tráquea, esófago y pulmón de res. Presentaciones desde 50g hasta 1kg XL.</div>
+      <div class="brand-learn"><span>Gap:</span> Empaque genérico, sin storytelling, sin comunidad digital propia.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#3 MX</div>
+      <div class="brand-origin" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)">Nacional</div>
+      <div class="brand-name">Mundo Lomito</div>
+      <div class="brand-desc">Línea completa: hígado, pulmón, mollejas, patitas. Sin conservadores. Fuerte en Amazon México.</div>
+      <div class="brand-learn"><span>Gap:</span> Nombre descriptivo pero sin identidad de marca. Muy vulnerable a quien entre con diseño y narrativa.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#4 MX</div>
+      <div class="brand-origin" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)">Nacional</div>
+      <div class="brand-name">Nivo Golden</div>
+      <div class="brand-desc">Mix de res: tráquea, pulmón y pezuña en 1kg. Posicionamiento de volumen y precio accesible.</div>
+      <div class="brand-learn"><span>Gap:</span> Juega en commodity, no en premium. No es competidor directo.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#5 MX</div>
+      <div class="brand-origin" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)">Nacional</div>
+      <div class="brand-name">DoGift</div>
+      <div class="brand-desc">Claim hipoalergénico bien trabajado. Libre de gluten, 100% natural, sin conservantes. Distribuye en tiendas especializadas.</div>
+      <div class="brand-learn"><span>Gap:</span> El único que trabaja el claim hipoalergénico consistentemente. Aprender de esa especificidad.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#6–10 MX</div>
+      <div class="brand-origin" style="background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid var(--border)">Mix</div>
+      <div class="brand-name">Barkys / Waggys / Aussie Prime / Petzer / Charales</div>
+      <div class="brand-desc">Barkys: masivo pero usa harina de trigo. Waggys: soft chews para entrenamiento. Aussie Prime: intento premium local. Petzer: artesanal. The Pets Club: charal deshidratado.</div>
+      <div class="brand-learn"><span>Nota:</span> El charal como ingrediente mexicano tiene narrativa de origen que nadie explota bien.</div>
+    </div>
+
+  </div>
+
+  <div class="clabel muted" style="margin-bottom:1.5rem">EUA — Top 10 treats deshidratados / freeze-dried</div>
+  <div class="g3">
+
+    <div class="brand-card" style="border-color:rgba(200,169,110,0.3)">
+      <div class="brand-rank">#1 USA</div>
+      <div class="brand-origin" style="background:rgba(200,169,110,0.1);color:var(--gold);border:1px solid rgba(200,169,110,0.25)">Líder de mercado</div>
+      <div class="brand-name">Stella &amp; Chewy's</div>
+      <div class="brand-desc">Carnivore Crunch: 98% carne, órganos y hueso molido. La colección más completa de freeze-dried. Líder en ventas junto con Nature's Variety.</div>
+      <div class="brand-learn"><span>Aprender:</span> Coherencia total entre producto, empaque, tono y comunidad. El negro premium como señal visual de calidad.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#2 USA</div>
+      <div class="brand-origin" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)">Favorito comunidad</div>
+      <div class="brand-name">Vital Essentials</div>
+      <div class="brand-desc">Single ingredient: chicken hearts, beef liver, rabbit bites. La ingredient list tiene exactamente una línea. El #1 en recomendaciones orgánicas de comunidades pet.</div>
+      <div class="brand-learn"><span>Aprender:</span> Un ingrediente como acto de confianza máxima. Elimina toda fricción de credibilidad.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#3 USA</div>
+      <div class="brand-origin" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)">En consolidación</div>
+      <div class="brand-name">PureBites</div>
+      <div class="brand-desc">Ingrediente único, adquirió planta USDA human-grade. Líderes en beef liver freeze-dried. Adquirieron Primal Pet Foods en feb 2026.</div>
+      <div class="brand-learn"><span>Aprender:</span> La integración vertical como estrategia de largo plazo. Pero primero: el single ingredient.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#4 USA</div>
+      <div class="brand-origin" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)">Narrativa de origen</div>
+      <div class="brand-name">Farm Hounds</div>
+      <div class="brand-desc">Cada bolsa dice de qué granja específica viene la carne. Trazabilidad al nivel de productor. Single ingredient, proteínas deshidratadas de calidad.</div>
+      <div class="brand-learn"><span>Aprender:</span> Origen específico como narrativa estructural. "Rancho de Sonora" es más poderoso que "carne de res de libre pastoreo".</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#5 USA</div>
+      <div class="brand-origin" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)">Human-grade pioneer</div>
+      <div class="brand-name">The Honest Kitchen</div>
+      <div class="brand-desc">Única certificación human-grade aprobada por FDA en toda la industria. Top 45 revenue USA. Canal: specialty retail independiente primero.</div>
+      <div class="brand-learn"><span>Aprender:</span> Claim demostrable y verificable, no aspiracional vago. Y construir en retail boutique antes de ir a escala.</div>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-rank">#6–10 USA</div>
+      <div class="brand-origin" style="background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid var(--border)">Complementarios</div>
+      <div class="brand-name">Orijen / Primal / Stewart / Ziwi Peak / Halo</div>
+      <div class="brand-desc">Orijen: 99% animal ingredients, freeze-dried, 5 cal/pieza. Ziwi: air-dried NZ, 51% proteína, el más caro. Halo: eje ético / sin granjas industriales.</div>
+      <div class="brand-learn"><span>Contexto:</span> El mercado EUA crece 8.8% CAGR en freeze-dried. Lo que hoy es premium allá, en 2027–28 será expectativa en Condesa.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 4: CAPAS -->
+<section class="page-section reveal" id="capas" data-num="04">
+  <div class="sec-eyebrow">Arquitectura de mercado</div>
+  <h2>Las 4 capas del mercado<br><em>y dónde vive tu marca</em></h2>
+
+  <div style="max-width:800px;margin-bottom:3rem">
+    <div class="layer-card l1">
+      <div class="layer-num"><span style="color:var(--text3)">Capa 1</span></div>
+      <div class="layer-title">Commodity natural — volumen sin identidad</div>
+      <div class="layer-body">MX: Lovie, Mundo Lomito, Nivo Golden, DoGift. USA: Stewart Pro-Treat, Wag (Amazon brand). Producto correcto, empaque genérico, sin comunidad, sin narrativa. Compiten por precio y disponibilidad. Sin lealtad real.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="tag tag-muted">$80–180 MXN / 100–250g</span>
+        <span class="tag tag-muted">$6–10 USD / 2–4 oz</span>
+      </div>
+    </div>
+
+    <div class="layer-card l2">
+      <div class="layer-num"><span style="color:var(--amber)">Capa 2</span></div>
+      <div class="layer-title">Premium con identidad emergente</div>
+      <div class="layer-body">MX: MUTT, Aussie Prime, Petzer, Waggys. USA: Primal (pre-adquisición), Halo, Barkys (en segmento pollo puro). Tienen producto real, algo de comunidad, posicionamiento más claro. MUTT es el más avanzado en MX. Nadie ha cruzado al siguiente nivel.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="tag tag-a">$180–350 MXN / 100–200g</span>
+        <span class="tag tag-a">$10–15 USD / 2–4 oz</span>
+      </div>
+    </div>
+
+    <div class="layer-card l3">
+      <div class="layer-num"><span style="color:var(--green)">Capa 3 — TU OBJETIVO</span></div>
+      <div class="layer-title">Premium consolidado con comunidad real — WHITE SPACE en México</div>
+      <div class="layer-body">MX: <strong style="color:var(--text)">ninguna marca local existe aquí.</strong> USA: Vital Essentials, PureBites, Stella & Chewy's, Farm Hounds, The Honest Kitchen. Tienen los tres elementos simultáneamente: producto sin concesiones + marca con narrativa consistente + comunidad que los defiende sin pedirlo. En México, esta capa está vacía para marca local.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="tag tag-g">$250–380 MXN / 80–150g</span>
+        <span class="tag tag-g">$14–22 USD / 3–4 oz</span>
+        <span class="tag tag-g">Oportunidad inmediata</span>
+      </div>
+    </div>
+
+    <div class="layer-card l4">
+      <div class="layer-num"><span style="color:var(--gold)">Capa 4</span></div>
+      <div class="layer-title">Ultra premium / aspiracional</div>
+      <div class="layer-body">MX: solo Orijen importado. USA: Orijen Singles, Ziwi Peak. Precio que excluye por diseño. Ingredientes exóticos certificados. Volumen pequeño, margen altísimo, comunidad pequeña pero muy leal. Requiere respaldo técnico que aún no tienes.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="tag tag-gold">$400–700 MXN / 43–100g</span>
+        <span class="tag tag-gold">$20–40 USD / 3–4 oz</span>
+        <span class="tag tag-muted">No es tu entrada</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="opp-box">
+    <div class="opp-title">La oportunidad real</div>
+    <div class="opp-body">Entras con precio de Capa 2 alta / Capa 3 baja — ~$250–380 MXN por 80–150g — pero con identidad, narrativa y ejecución de marca de Capa 3. El consumidor que quiere Vital Essentials o Stella & Chewy's en términos de confianza, hoy no tiene opciones mexicanas. Compra Orijen importado a precio de Capa 4, o se conforma con MUTT en Capa 2. Ese gap es tuyo si lo ejecutas bien.</div>
+  </div>
+</section>
+
+<!-- SECTION 5: REFERENCIAS -->
+<section class="page-section reveal" id="referencias" data-num="05">
+  <div class="sec-eyebrow">Las 5 referencias de marca</div>
+  <h2>Qué tomas de<br><em>cada una</em></h2>
+
+  <div class="g2" style="margin-bottom:1.5rem">
+
+    <div class="card-gold" style="grid-column:1/-1">
+      <div class="clabel gold">Tu modelo síntesis — lo que tomas de cada referencia</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:1rem">
+        <div style="text-align:center;padding:.75rem;background:rgba(0,0,0,.2);border-radius:6px">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:.4rem">Vital Essentials</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.5">Single ingredient como acto de confianza</div>
+        </div>
+        <div style="text-align:center;padding:.75rem;background:rgba(0,0,0,.2);border-radius:6px">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:.4rem">MUTT</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.5">Lo que funciona en MX y los gaps que cerrar</div>
+        </div>
+        <div style="text-align:center;padding:.75rem;background:rgba(0,0,0,.2);border-radius:6px">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:.4rem">Farm Hounds</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.5">Origen específico como narrativa de marca</div>
+        </div>
+        <div style="text-align:center;padding:.75rem;background:rgba(0,0,0,.2);border-radius:6px">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:.4rem">Stella & Chewy's</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.5">Coherencia de marca + empaque + tribu</div>
+        </div>
+        <div style="text-align:center;padding:.75rem;background:rgba(0,0,0,.2);border-radius:6px">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:.4rem">Honest Kitchen</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.5">Claim demostrable + canal specialty primero</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="clabel g">Vital Essentials — Tu referencia de producto</div>
+        <h3 style="margin-bottom:.5rem">Single ingredient como confianza máxima</h3>
+        <div class="card-body" style="margin-bottom:1rem">Tu producto de entrada debería poder describirse en menos de 5 palabras. "Hígado de res deshidratado." "Pechuga de pollo. Eso." Nunca dicen "solo tiene un ingrediente" como si fuera poco — lo dicen como si fuera la prueba de que no tienen nada que esconder.</div>
+        <div>
+          <span class="tag tag-g">Ingrediente único</span>
+          <span class="tag tag-g">Ingredient list de 1 línea</span>
+          <span class="tag tag-g">Sin concesiones</span>
+        </div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--text3)"><strong style="color:var(--red)">No copiar:</strong> Su empaque es funcional pero frío. Tú puedes hacer eso mejor.</div>
+      </div>
+
+      <div class="card" style="margin-bottom:1rem">
+        <div class="clabel a">Farm Hounds — Tu referencia de narrativa</div>
+        <h3 style="margin-bottom:.5rem">El origen como identidad estructural</h3>
+        <div class="card-body" style="margin-bottom:1rem">En México tienes ingredientes con narrativa de origen enorme que nadie explota. "Carne de res de Sonora, sin antibióticos, deshidratado en CDMX." No es un claim de marketing — es una promesa verificable. MUTT y Lovie no pueden imitarla de un día para otro.</div>
+        <div>
+          <span class="tag tag-a">Granja / rancho específico</span>
+          <span class="tag tag-a">Origen México</span>
+          <span class="tag tag-a">Trazabilidad</span>
+        </div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--text3)"><strong style="color:var(--red)">No copiar:</strong> Su modelo DTC puro. Tú necesitas también retail físico desde el inicio.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="clabel muted">MUTT — Tu benchmark local</div>
+        <h3 style="margin-bottom:.5rem">Estudiar sus gaps, no solo sus aciertos</h3>
+        <div class="card-body" style="margin-bottom:1rem">Tienen comunidad real, Petco, ingredientes correctos. Pero sin ingrediente héroe — venden todo, lo que diluye su historia. Sin identidad visual memorable en anaquel. Nombre en inglés sin narrativa en español. Tú entras con un solo ingrediente, una sola historia.</div>
+        <div>
+          <span class="tag tag-muted">Canal en Petco</span>
+          <span class="tag tag-muted">Comunidad orgánica</span>
+          <span class="tag tag-r">Sin ingrediente héroe</span>
+          <span class="tag tag-r">Diseño débil</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1rem">
+        <div class="clabel gold">Stella & Chewy's — Tu referencia de marca</div>
+        <h3 style="margin-bottom:.5rem">El empaque como parte del producto</h3>
+        <div class="card-body" style="margin-bottom:1rem">En tu encuesta, el 20% mencionó el empaque como factor de decisión. En La Condesa, el anaquel de una tienda premium es un espacio de comunicación. Tu empaque necesita ganarlo sin que nadie lea el copy. Invierte en diseño desde el inicio como si fuera parte del producto, no afterthought.</div>
+        <div>
+          <span class="tag tag-gold">Empaque premium</span>
+          <span class="tag tag-gold">Coherencia visual total</span>
+          <span class="tag tag-gold">Tribu fiel</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="clabel b">The Honest Kitchen — Tu referencia de canal</div>
+        <h3 style="margin-bottom:.5rem">Specialty retail antes de escala</h3>
+        <div class="card-body" style="margin-bottom:1rem">Creció primero en tiendas de mascotas boutique — no Petco, no Walmart. En CDMX: La Condesa, Roma, Polanco, San Ángel. Ahí está tu consumidor de encuesta. Y un claim demostrable: no "natural" genérico, sino algo específico que puedas probar.</div>
+        <div>
+          <span class="tag tag-b">Specialty retail first</span>
+          <span class="tag tag-b">Claim verificable</span>
+          <span class="tag tag-b">Propósito real</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: SÍNTESIS -->
+<section class="page-section reveal" id="sintesis" data-num="06">
+  <div class="sec-eyebrow">Síntesis estratégica</div>
+  <h2>Lo que tu marca<br><em>debe ser sin excepción</em></h2>
+
+  <div class="g2" style="margin-bottom:2.5rem">
+    <div>
+      <div class="clabel muted" style="margin-bottom:1rem">Atributos no negociables del producto</div>
+      <div class="check-item">
+        <div class="check-dot" style="background:var(--green-bg);border:1px solid var(--green-border);color:var(--green)">✓</div>
+        <div>
+          <div class="check-title">Ingrediente único verificable</div>
+          <div class="check-desc">Una proteína, una línea en la ingredient list. Sin excusas. Eso es tu diferenciador más poderoso en el mercado mexicano actual.</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-dot" style="background:var(--green-bg);border:1px solid var(--green-border);color:var(--green)">✓</div>
+        <div>
+          <div class="check-title">Sin conservadores, colorantes, sal ni subproductos</div>
+          <div class="check-desc">No negociable. Es la promesa básica que el 46% de tu encuesta exige como condición mínima.</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-dot" style="background:var(--green-bg);border:1px solid var(--green-border);color:var(--green)">✓</div>
+        <div>
+          <div class="check-title">Origen México declarado</div>
+          <div class="check-desc">Con proveedor específico. No "carne nacional" — "pechuga de productores de Jalisco". Eso nadie lo puede copiar fácilmente.</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-dot" style="background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber)">!</div>
+        <div>
+          <div class="check-title">Sin olor artificial — y que el producto no huela en las manos</div>
+          <div class="check-desc">23 menciones espontáneas. El pain point más subestimado. "Manejable por el humano" es un claim diferenciador real en esta categoría.</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-dot" style="background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber)">!</div>
+        <div>
+          <div class="check-title">Registro SENASICA visible en empaque</div>
+          <div class="check-desc">Vía maquila. Es el claim demostrable que ninguna marca artesanal sin registro puede replicar.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="clabel muted" style="margin-bottom:1rem">Lo que tomas de cada referencia — síntesis ejecutiva</div>
+      <div class="synth-item">
+        <div class="synth-source">Vital Essentials</div>
+        <div class="synth-body"><strong>Single ingredient</strong> como acto de confianza. Tu ingredient list tiene una línea. Punto.</div>
+      </div>
+      <div class="synth-item">
+        <div class="synth-source">Farm Hounds</div>
+        <div class="synth-body"><strong>Origen específico</strong> como narrativa de marca. Ranch name, región, protocolo sin antibióticos.</div>
+      </div>
+      <div class="synth-item">
+        <div class="synth-source">Stella & Chewy's</div>
+        <div class="synth-body"><strong>Empaque como producto.</strong> Inversión en diseño desde el día 1, no después de validar ventas.</div>
+      </div>
+      <div class="synth-item">
+        <div class="synth-source">MUTT</div>
+        <div class="synth-body"><strong>Canal Petco</strong> como validación de retail. Pero con ingrediente héroe específico que MUTT no tiene.</div>
+      </div>
+      <div class="synth-item">
+        <div class="synth-source">Honest Kitchen</div>
+        <div class="synth-body"><strong>Specialty retail primero.</strong> 5–8 tiendas premium CDMX antes de marketplace. Construye prueba social primero.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clabel muted" style="margin-bottom:1.25rem">Los 3 SKUs de lanzamiento y su lógica</div>
+  <div class="g3" style="margin-bottom:2.5rem">
+    <div class="card-green">
+      <div class="clabel g">SKU 01 — Mayor volumen</div>
+      <h3 style="color:var(--green)">Pechuga de pollo deshidratada</h3>
+      <div class="card-body">Mayor palatabilidad universal. Tu generador de flujo desde el mes 1. 80g. Precio: $260–290 MXN. Margen canal propio: 65–70%.</div>
+      <div style="margin-top:.75rem">
+        <span class="tag tag-g">Palatabilidad universal</span>
+        <span class="tag tag-g">Mejor rotación</span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(90,138,196,0.3)">
+      <div class="clabel b">SKU 02 — Mayor margen</div>
+      <h3>Hígado de res deshidratado</h3>
+      <div class="card-body">Mayor carga nutricional. Favorito de raw feeding. Alta intensidad de aroma = palatabilidad máxima para el perro. 80g. Precio: $280–320 MXN.</div>
+      <div style="margin-top:.75rem">
+        <span class="tag tag-b">Raw feeding</span>
+        <span class="tag tag-b">Training</span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(200,169,110,0.3)">
+      <div class="clabel gold">SKU 03 — Mayor diferenciación</div>
+      <h3>Salmón del Pacífico deshidratado</h3>
+      <div class="card-body">El más mencionado espontáneamente en encuesta. Omega-3, pelaje, alergias: tres claims sin esfuerzo. 60g. Precio: $310–360 MXN. Tu proteína de identidad.</div>
+      <div style="margin-top:.75rem">
+        <span class="tag tag-gold">Omega-3</span>
+        <span class="tag tag-gold">Diferenciador</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber" style="margin-bottom:2.5rem">
+    <div class="clabel a">El dato de mercado que cambia todo</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:.5rem">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--amber);margin-bottom:.25rem">$10.5 B</div>
+        <div style="font-size:12px;color:var(--text2)">USD — Mercado de treats para mascotas en EUA 2025. Creciendo a 7.77% CAGR hasta 2030.</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--amber);margin-bottom:.25rem">8.8%</div>
+        <div style="font-size:12px;color:var(--text2)">CAGR de freeze-dried y jerky treats — la subcategoría de mayor crecimiento de toda la industria. Lo que hoy es premium en EUA, en 2027 es expectativa en Condesa.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-quote">
+    <p>"No produces para vender todavía. Produces para aprender. 30–50 perros, 3 proteínas, un desidratador. El producto que gane ese test es el que llevas al maquilador con especificación definida."</p>
+    <cite>Plan de validación — Fase 1 antes de inversión en producción</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-title">Resumen Estratégico — Marca de Mascotas</div>
+    <div class="footer-sub">200 encuestas · La Condesa CDMX · Análisis competitivo MX + USA · 2025</div>
+  </div>
+  <div style="text-align:right">
+    <div class="footer-sub" style="margin-bottom:4px">Siguiente paso</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--gold)">Brief de marca — nombre, identidad visual, empaque</div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // animate bars inside
+      e.target.querySelectorAll('.bar-fill').forEach(b => b.classList.add('animated'));
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animate bars in hero on load
+setTimeout(() => {
+  document.querySelectorAll('.hero .bar-fill').forEach(b => b.classList.add('animated'));
+}, 300);
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+  });
+});
+</script>
+</body>
+</html>
